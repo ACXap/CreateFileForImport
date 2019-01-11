@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <system:String x:Key="TextBlockFileNewData">Файл с новыми данными:</system:String>
+    <system:String x:Key="TextBlockFileDataFromDB">Файл c данными из базы</system:String>
+    <system:String x:Key="TextBlockCountRecords">Всего записей:</system:String>
+    <system:String x:Key="TextBlockCountRecordWithError">Записей с ошибками:</system:String>
+    
+    <system:String x:Key="ButtonSelectionFile">Выбрать файл</system:String>
+    <system:String x:Key="ButtonCreateFileForImport">Сформировать файлы для импорта ОН</system:String>
+    <system:String x:Key="ButtonRemoveDuplicate">Удалить дубликаты информации</system:String>
+    <system:String x:Key="ButtonGetDataFromDB">Получить данные напрямую из базы</system:String>
+
+    <system:String x:Key="ToolTipRemoveDuplicate">Сравнить новые данные с данными из базы и если совпадают записи исключить их</system:String>
+    <system:String x:Key="ToolTipGetDataFromDB">Загрузить данные напрямую из базы</system:String>
+    <system:String x:Key="ToolTipCountRecordsWithError">Пустые поля, поля с неверными данными</system:String>
+
+    <system:String x:Key="GroupBoxNewData">Новые данные:</system:String>
+    <system:String x:Key="GroupBoxDataFromDB">Данные из базы:</system:String>
+    <system:String x:Key="GroupBoxDuplicate">Дубликаты:</system:String>
+    <system:String x:Key="GroupBoxError">Ошибки:</system:String>
+    
+    
+</ResourceDictionary>
