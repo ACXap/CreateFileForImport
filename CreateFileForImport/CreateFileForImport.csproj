@@ -96,7 +96,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\EnumFileData.cs" />
     <Compile Include="Model\FileData.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

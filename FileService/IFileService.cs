@@ -7,6 +7,8 @@ namespace FileService
     {
         void GetFile(Action<string, Exception> callback);
         void GetData(Action<IEnumerable<string>, Exception> callback, string pathFile);
-        void SaveFile(Action<string, Exception> callback);
+        void SaveFile(Action<Exception> callback, IEnumerable<string> data, string nameFile);
+        void OpenFolder(Action<Exception> callback, string pathFolder);
+        void ClearFolder(Action<Exception> callback, string pathFolder);
     }
 }

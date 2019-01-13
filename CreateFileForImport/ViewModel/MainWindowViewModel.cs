@@ -1,12 +1,8 @@
-﻿using DataService;
+﻿using System;
+using DataService;
 using FileService;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CreateFileForImport
 {
@@ -15,62 +11,53 @@ namespace CreateFileForImport
         private readonly IFileService _fileService;
         private readonly IDataService _dataService;
 
-        public FileData FileNewData { get; private set; }
-        public FileData FileFromDB { get; private set; }
+        public FileData FileData { get; private set; }
 
-        private RelayCommand<EnumFileData> _selectFile;
-        public RelayCommand<EnumFileData> SelectFile =>
-            _selectFile ?? (_selectFile = new RelayCommand<EnumFileData>(
-                    f =>
-                    {
-                        string pathFile = string.Empty;
-                        IEnumerable<string> data = null; ;
+        private RelayCommand _commandSelectFile;
+        public RelayCommand CommandSelectFile =>
+            _commandSelectFile ?? (_commandSelectFile = new RelayCommand(
+                    () => SelectFile()));
 
-                        _fileService.GetFile((file, er) =>
-                        {
-                            if (er == null)
-                            {
-                                pathFile = file;
-                            }
-                        });
+        private RelayCommand _commandCheckData;
+        public RelayCommand CommandCheckData =>
+            _commandCheckData ?? (_commandCheckData = new RelayCommand(
+                () => CheckData(),
+            () => !string.IsNullOrEmpty(FileData.PathFile)));
 
-                        if (string.IsNullOrEmpty(pathFile) || data == null)
-                        {
-                            return;
-                        }
+        private RelayCommand _commandCreateFiles;
+        public RelayCommand CommandCreateFiles =>
+            _commandCreateFiles ?? (_commandCreateFiles = new RelayCommand(
+                    () => CreateFiles(),
+                    () => !string.IsNullOrEmpty(FileData.PathFile) && true));
 
-                        _fileService.GetData((d, er) =>
-                        {
-                            if (er == null)
-                            {
-                                data = d;
-                            }
-                            else
-                            {
-                                throw new Exception();
-                            }
-                        }, pathFile);
+        private void CreateFiles()
+        {
+            throw new NotImplementedException();
+        }
 
-                        _dataService.GetDataFromStings((oe, error) =>
-                        {
+        private void CheckData()
+        {
+            throw new NotImplementedException();
+        }
 
-                        }, data);
+        private void SelectFile()
+        {
+            string pathFile = string.Empty;
 
+            _fileService.GetFile((file, er) =>
+            {
+                if (er == null)
+                {
+                    pathFile = file;
+                }
+            });
 
-                        if (f == EnumFileData.FileNewData)
-                        {
-                            FileNewData.PathFile = pathFile;
-                        }
-                        else
-                        {
-                            FileFromDB.PathFile = pathFile;
-                        }
-                    }));
+            FileData.PathFile = pathFile;
+        }
 
         public MainWindowViewModel()
         {
-            FileNewData = new FileData();
-            FileFromDB = new FileData();
+            FileData = new FileData();
 
             _fileService = new FileService.FileService();
             _dataService = new DataService.DataService();
